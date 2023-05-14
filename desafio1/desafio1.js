@@ -1,4 +1,4 @@
-class ProductManager {
+class ProductsManager {
     #products
     #error
     constructor(){
@@ -36,13 +36,13 @@ class ProductManager {
     }
 }
 
-const productManager = new ProductManager()
-productManager.addProduct('Adidas Adizero', 'Zapatillas deportivas', 30000, 'https://craftypixels.com/placeholder-image/300', 1010, 4)
-productManager.addProduct('Adidas Runfalcon', 'Zapatillas deportivas', 40000, 'https://craftypixels.com/placeholder-image/300', 1020, 3)
-productManager.addProduct('Adidas Predator', 'Zapatillas deportivas', 20000, 'https://craftypixels.com/placeholder-image/300', 1030, 6)
-productManager.addProduct('Adidas Forum', 'Zapatillas deportivas', 50000, 'https://craftypixels.com/placeholder-image/300', 1030, 1)
-productManager.addProduct('Adidas Galaxy', 'Zapatillas deportivas', 60000, 1050, 10)
+const productsManager = new ProductsManager()
+productsManager.addProduct('Adidas Adizero', 'Zapatillas deportivas', 30000, 'https://craftypixels.com/placeholder-image/300', 1010, 4)
+productsManager.addProduct('Adidas Runfalcon', 'Zapatillas deportivas', 40000, 'https://craftypixels.com/placeholder-image/300', 1020, 3)
+productsManager.addProduct('Adidas Predator', 'Zapatillas deportivas', 20000, 'https://craftypixels.com/placeholder-image/300', 1030, 6)
+productsManager.addProduct('Adidas Forum', 'Zapatillas deportivas', 50000, 'https://craftypixels.com/placeholder-image/300', 1030, 1)
+productsManager.addProduct('Adidas Galaxy', 'Zapatillas deportivas', 60000, 1050, 10)
 
 
-console.log(productManager.getProducts())
-console.log(productManager.getProductById(7))
+console.log(productsManager.getProducts())
+console.log(productsManager.getProductById(7))
