@@ -42,7 +42,7 @@ class ProductManager {
         const products = await this.readProducts();
         const productIndex = products.findIndex(product => product.id === id);
         if (productIndex === -1) {
-            return null; // product not found
+            return null; 
         }
         const oldProduct = products[productIndex];
         const newProduct = { ...oldProduct, ...updatedProduct, id };
