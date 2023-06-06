@@ -3,20 +3,18 @@ import ProductManager from '../managers/ProductManager.js'
 
 const product = new ProductManager()
 
-
 const productRouter = Router()
 
-productRouter.get('/', async(req,res) => {
-    res.send(await product.getProducts())
-})
 
-// router.get('/', (req, res) => {
-//     const limit = req.query.limit
-//     if (limit > manager.products.length) {
-//         return res.status(400).json({ error: 'Invalid limit'})
-//     }
-//     res.status(200).json({ manager: manager.products.slice(0, limit) })
-// })
+productRouter.get('/', async (req, res) => {
+    const limit = req.query.limit
+    const products = await product.getProducts()
+
+    if (limit > products.length) {
+        return res.status(400).json({ error: 'Limit is invalid' })
+    }
+    res.status(200).json({ product: products.slice(0, limit) })
+})
 
 productRouter.get('/:pid', async(req,res) => {
     const pid = parseInt(req.params.pid)
@@ -26,6 +24,12 @@ productRouter.get('/:pid', async(req,res) => {
 
 productRouter.post('/', async(req,res) =>{
     const newProduct = req.body
+    const requiredFields = ['title', 'description', 'code', 'price', 'stock', 'category'];
+    for (const field of requiredFields) {
+        if (!newProduct[field]) {
+            return res.status(400).json({ error: `El campo ${field} es obligatorio.` });
+    }
+    }
     res.send(await product.addProducts(newProduct))
 })
 

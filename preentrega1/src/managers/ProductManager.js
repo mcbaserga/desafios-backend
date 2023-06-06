@@ -26,15 +26,6 @@ class ProductManager {
         const productAll = [...oldProducts, newProduct]
         await this.writeProducts(productAll)
         return "Product added"
-
-// router.post('/', (req, res) => {
-//         const { title, category, description, price, thumbnail, code, stock, status } = req.body
-//         if (!title || !description || !price || !code || !stock || !status ) {
-//             return res.status(400).json({error: 'All fields are required'})
-//         }
-//         const productCreated = { id: ProductManager.id + 1, title, category, description, price, thumbnail, code, stock, status }
-//         manager.products.push(productCreated)
-
     }
 
 
@@ -72,12 +63,3 @@ class ProductManager {
 
 
 export default ProductManager
-
-
-
-
-
-
-
-
-
