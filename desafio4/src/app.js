@@ -2,7 +2,7 @@ import express from 'express'
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io'
 import { engine } from 'express-handlebars'
-import viewsRouter from './routers/views.router.js'
+import router from './routers/views.router.js'
 import productsRouter from './routers/products.router.js'
 import cartsRouter from './routers/carts.router.js'
 
@@ -29,7 +29,7 @@ app.set('view engine', 'handlebars')
 app.get('/', (req,res) => res.render('index'))
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartsRouter)
-app.use('/products', viewsRouter)
+app.use('/products', router)
 
 
 io.on("connection", socket => {
