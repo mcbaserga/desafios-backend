@@ -1,5 +1,6 @@
 const socket = io()
-const table = document.getElementById('realTimeTable')
+
+const table = document.getElementById('realProductsTable')
 
 
 document.getElementById('createBtn').addEventListener('click', () => {
