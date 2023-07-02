@@ -28,8 +28,7 @@ productRouter.post('/', async(req,res) =>{
     for (const field of requiredFields) {
         if (!newProduct[field]) {
             return res.status(400).json({ error: `El campo ${field} es obligatorio.` });
-    }
-    }
+        }}
     res.send(await product.addProducts(newProduct))
 })
 

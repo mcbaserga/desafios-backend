@@ -18,7 +18,6 @@ app.use((req,res,next) => {
     next()
 })
 
-
 app.use(express.static('./src/public'))
 
 app.engine('handlebars', handlebars.engine())
