@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/', async (req, res) => {
     const messages = await messageModel.find()
-    res.status(200).json( {status: 'success', payload: messages })
+    res.render('chat', {})
 })
 
 

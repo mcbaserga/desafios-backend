@@ -7,7 +7,7 @@ import viewsRouter from './routers/views.router.js'
 import productRouter from './routers/product.router.js'
 import cartRouter from './routers/cart.router.js'
 import chatRouter from './routers/chat.router.js'
-import realRouter from './routers/views.router.js'
+import realRouter from './routers/real.router.js'
 
 
 const app = express()
