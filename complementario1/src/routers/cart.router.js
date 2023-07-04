@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/', async (req, res) => {
     const result = await cartModel.find()
-    res.json( {status: 'success', payload: result })
+    res.status(200).json( {status: 'success', payload: result })
 })
 
 
@@ -20,36 +20,43 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/:cid', async (req, res) => {
+    try{
+        const id = req.params.cid
+        const result = await cartModel.findById(id).lean().exec()
+        if (result === null) {
+            return res.status(404).json({ message:'Cart not found'})
+        }
+        res.status(200).json({ status: 'success', payload: result })
+    } catch (err) {
+        res.status(500).json({ status: 'error', error: err.message })
+    }
+})
+
+
+router.post('/:cid/products/:pid', async (req, res) => {
+    const { cid, pid } = req.params;
+    const productId = req.body.productId;
+
+    try {
+        const cart = await cartModel.findById(cid);
+
+        if (!cart) {
+            return res.status(404).json({ status: 'error', error: 'Cart not found' });
+        }
+
+        cart.products.push({ product: productId });
+
+        await cart.save();
+
+        res.status(200).json({ status: 'success', payload: cart });
+    } catch (err) {
+        res.status(500).json({ status: 'error', error: err.message });
+    }
+});
+
+
+
 export default router
 
 
-
-
-// import { Router } from 'express'
-// import CartManager from '../managers/CartManager.js'
-
-
-// const cartRouter = Router()
-
-// const carts = new CartManager
-
-// cartRouter.post('/', async(req,res) => {
-//     res.send (await carts.addCarts())
-// })
-
-// cartRouter.get('/', async(req,res) => {
-//     res.send(await carts.readCarts())
-// })
-
-// cartRouter.get('/:cid', async(req,res) => {
-//     const cid = parseInt(req.params.cid)
-//     res.send(await carts.getCartsById(cid))
-// })
-
-// cartRouter.post('/:cid/products/:pid', async(req,res) => {
-//     const cartId = parseInt(req.params.cid)
-//     const productId = parseInt(req.params.pid)
-//     res.send(await carts.addProductInCart(cartId, productId))
-// })
-
-// export default cartRouter
